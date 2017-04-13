@@ -42,7 +42,7 @@ describe "items API" do
 
     delete "/api/v1/items/#{id}"
 
-    expect(response).to_not be_success
+    expect(response).to be_success
     expect(Item.count).to eq(0)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
