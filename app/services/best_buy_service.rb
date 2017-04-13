@@ -1,25 +1,24 @@
 class BestBuyService
-  attr_reader :connection, :url
+  attr_reader :connection, :zip
 
   def initialize(zip)
-    @connection = create_connection
-    @url = "https://api.bestbuy.com/v1/stores(area(#{zip},25))"
+    @connection =  create_connection
+    @zip = zip
   end
 
   def stores
-    byebug 
-    parse(connection)
+    parse(connection.get("stores(area(#{zip},25))"))
   end
 
   private
 
   def create_connection
-    Faraday.new(url: url) do |faraday|
-      faraday.adapter  Faraday.default_adapter
+    Faraday.new(url: "https://api.bestbuy.com/v1") do |faraday|
       faraday.params[:format] = "json"
       faraday.params[:show] = "longName,city,distance,phone,storeType"
       faraday.params[:pageSize] = "10"
       faraday.params[:apiKey] = ENV["BEST_BUY_KEY"]
+      faraday.adapter  Faraday.default_adapter
     end
   end
 
