@@ -10,6 +10,8 @@ describe "search bar on root page" do
       click_on "Find"
 
       expect(current_path).to eq("/search")
+      expect(page).to have_content "80202"
+      expect(page).to have_content "16 Total Stores"
     end
   end
 end
