@@ -8,8 +8,8 @@ class Api::V1::ItemsController < API::V1::BaseController
   end
 
   def create
-     Item.create(item_params)
-     if Item.save
+     item = Item.create(item_params)
+     if item.save
        render json: Item.last
      end
   end

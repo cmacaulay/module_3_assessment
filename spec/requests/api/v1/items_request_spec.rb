@@ -46,4 +46,15 @@ describe "items API" do
     expect(Item.count).to eq(0)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it "can create a new item" do
+    item_params = { name: "Moon Boots", description: "The Fluffiest", image_url: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages.cavesclothes.co.uk%2Fimages%2Fproducts%2Fzoom%2F1322305775-28869800.jpg&f=1"}
+
+    post "/api/v1/items",  {item: item_params}
+    item = Item.last
+
+    assert_response :success
+    expect(response).to be_success
+    expect(item.name).to eq(item_params[:name])
+  end
 end
