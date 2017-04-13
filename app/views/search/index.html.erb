@@ -1,10 +1,14 @@
-<h1>Stores within 25 miles of: <%= @stores.zip %> </h1>
-<h3> Total Stores: <%= @stores.total %></h3>
+<h1>Stores within 25 miles of: <%= @zip %> </h1>
+<h3> Total Stores: <%= @total %></h3>
 Results:
+<ul>
 <% @stores.each do |store| %>
-  <%= store.longName %>
-  <%= store.city %>
-  <%= store.distance %>
-  <%= store.phone %>
-  <%= store.storeType %>
+  <li><h4><%= store.longName %></h4></li>
+  <ul>
+    <li><%= store.city %></li>
+    <li><%= store.distance %></li>
+    <li><%= store.phone %></li>
+    <li><%= store.storeType %></li>
+  </ul>
 <% end %>
+</ul>

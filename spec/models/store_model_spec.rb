@@ -6,7 +6,7 @@ describe Store, type: :model do
       VCR.use_cassette("#find_stores") do
         stores   = Store.find_stores("80202")
         store    = stores.first
-        byebug 
+         
         expect(stores.count).to eq(10)
 
         expect(store[:longName]).to eq("BEST BUY MOBILE - CHERRY CREEK SHOPPING CENTER")

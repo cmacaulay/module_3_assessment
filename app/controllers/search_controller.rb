@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def index
-    @stores = Store.find_stores(params[:query])
-    byebug 
+    @zip = params[:query]
+    @stores = Store.find_stores(@zip)
+    @total = Store.total
   end
 end
