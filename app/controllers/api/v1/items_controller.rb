@@ -8,13 +8,15 @@ class Api::V1::ItemsController < API::V1::BaseController
   end
 
   def create
-    render json: Item.create(item_params)
-    # if
-    # redirect_to api_vi_item_path(Item.last)
+     Item.create(item_params)
+     if Item.save
+       render json: Item.last
+     end
   end
 
   def destroy
     Item.delete(params[:id])
+    render json: {}, status: :no_content
   end
 
   private

@@ -33,4 +33,17 @@ describe "items API" do
     expect(item["description"]).to eq("description")
     expect(item["image_url"]).to eq(item.image_url)
   end
+
+  it "can destroy an item" do
+    item = create(:item)
+    id   = item.id
+
+    expect(Item.count).to eq(1)
+
+    delete "/api/v1/items/#{id}"
+
+    expect(response).to_not be_success
+    expect(Item.count).to eq(0)
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
