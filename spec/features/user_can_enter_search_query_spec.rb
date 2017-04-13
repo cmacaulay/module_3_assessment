@@ -7,6 +7,6 @@ describe "search bar on root page" do
     fill_in "query", with: "80202"
     click_on "Find"
 
-    expect(current_page).to eq("/search")
+    expect(current_path).to eq("/search")
   end
 end
