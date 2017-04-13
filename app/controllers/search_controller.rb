@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
   def index
-    # @stores = Store.new(params[:query]).find_stores
+    @stores = Store.find_stores(params[:query])
   end
 end

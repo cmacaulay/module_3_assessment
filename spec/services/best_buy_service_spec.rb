@@ -8,8 +8,9 @@ describe BestBuyService do
       VCR.use_cassette("find_stores") do
         stores  = service.stores[:stores]
         store   = stores.first
-        
+
         expect(stores.count).to eq(10)
+
         expect(store[:longName]).to eq("BEST BUY MOBILE - CHERRY CREEK SHOPPING CENTER")
         expect(store[:city]).to eq("DENVER")
         expect(store[:distance]).to eq(3.45)
