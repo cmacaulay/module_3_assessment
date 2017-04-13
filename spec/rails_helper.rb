@@ -9,6 +9,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'vcr'
+require 'support/factory_girl'
+require 'support/factoies'
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"
