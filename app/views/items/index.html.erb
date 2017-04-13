@@ -1,3 +1,9 @@
+<div class="search">
+  <%= form_tag :search, method: :get do %>
+    <%= text_field_tag :query, "Best Buys Near Zip" %>
+    <%= submit_tag "Find" %>
+  <% end %>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
@@ -15,4 +21,3 @@
     </div>
   <% end %>
 </div>
-
