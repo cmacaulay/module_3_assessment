@@ -1,19 +1,21 @@
 class Store < OpenStruct
-  attr_reader :service, :zip
+  attr_reader :service, :zip, :total
 
   def self.service(zip)
     @service ||= BestBuyService.new(zip)
   end
 
   def self.find_stores(zip)
-    stores = service(zip).stores[:stores]
+    response = service(zip).stores
+    set_total(response)
+    stores  = response[:stores]
     stores.map do |store|
       Store.new(store)
     end
-    set_total
   end
 
-  def set_total 
+  def self.set_total(response)
+    @total = response[:total]
   end
 
 end

@@ -2,11 +2,14 @@ require "rails_helper"
 
 describe "search bar on root page" do
   it "user is able to enter query" do
-    visit "/"
+    VCR.use_cassette("user_finds_stores") do
 
-    fill_in "query", with: "80202"
-    click_on "Find"
+      visit "/"
 
-    expect(current_path).to eq("/search")
+      fill_in "query", with: "80202"
+      click_on "Find"
+
+      expect(current_path).to eq("/search")
+    end
   end
 end
